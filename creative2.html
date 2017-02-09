@@ -5,10 +5,76 @@
         <script type = "text/javascript" src= "http://code.jquery.com/jquery-1.12.0.min.js"></script>
     <meta charset="UTF=8">
    <style>
+	body{
+		font-family:Arial,sans-serif;
+		max-width:700px;
+		margin:auto;
+		line-height:1.5;
+	}
+	h1{
+		margin-top:1em
+	}
+	h2{
+		margin-top:2em
+		}
+	header{
+		text-align:center;
+		background-color:#b2cecf;
+		margin-bottom:20px
+	}
+	header h1{
+		margin-bottom:.75em
+	}
+	header h3{
+		margin-top:1px
+	}
+	button{	
+		font-family:inherit;
+		font-size:100%;
+		padding:.5em 1em;
+		color:#444;
+		color:rgba(0,0,0,.8);
+		border:1px solid #999;
+		border:transparent;
+		background-color:#e6e6e6;
+		text-decoration:none;
+		border-radius:2px;
+		cursor:pointer
+	}
+	button:focus,button:hover{
+		filter: alpha(opacity=90);
+		background-image:-webkit-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+		background-image:linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1))
+		}
+
+	.card{
+		margin:.5rem 0 1rem 0;
+		padding:24px;
+		background-color:#fff;
+		transition:box-shadow .25s;
+		border-radius:2px
+	}
+	.card{
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+	}
+
+	html,body{
+		height:100%;
+		margin:0;
+		background-image:url(http://www.emoticonswallpapers.com/background/music/music-pattern-012.png)
+		}
+	#centerEverything{
+		width: 70%;
+		margin: 0 auto;
+	}
+
     body {
     padding: 20px;
       background-image:url();
-}
+	}
+	html{
+		background-color: #d7ecf4;
+	}
 
 #search-form, .form-control {
     margin-bottom: 20px;
@@ -44,21 +110,28 @@
 	   }
 	   
     </style>
-  </head>
-  <body>
-    <h2>Search for an Artist</h2>
-    <form>
-    Name:<br>
-    <input  type= "text" id = "user_in" >
-    </form>
-      <button onclick = "run_button()">Submit</button>
-	  <h1>The artist's popularity!<div id = "popularity"></div></h1>
-	  <h1>How many followers the artist has! <div id = "followers"></div></h1>
-    <div id="results" >
+    </head>
+    <body>
+	<div id="centerEverything">
+		<div class='card'>
+    		<h1>Search for an Artist</h1>
+			<form>
+			Enter the artist's name below, and then CLICK the button.<br>
+			<input  type= "text" id = "user_in" >
+    		</form>
+			<button onclick = "run_button()">Submit</button>
+		</div>
+	  
+		<div class='card'>
+			<h1>The artist's popularity!<div id = "popularity"></div></h1>
+			<h1>How many followers the artist has! <div id = "followers"></div></h1>
+			<div id="results"></div>
+		</div>
+	
+		<div id = "art_name" ></div>
+		<div id = "cover_one" ></div>
     </div>
-    <div id = "art_name" ></div>
-	  <div id = "cover_one" ></div>
-
+    
     <script>
 		function run_button(){
 		var user_query = document.getElementById("user_in").value;
