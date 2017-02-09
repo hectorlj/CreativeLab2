@@ -49,9 +49,9 @@
     <h2>Search for an Artist</h2>
     <form>
     Name:<br>
-    <input  type= "text" id = "user_in" name = "firstname" value = "">
+    <input  type= "text" id = "user_in" >
     </form>
-      <button type = "submit" ng-click = "run_button">Submit</button>
+      <button onclick = "run_button()">Submit</button>
 	  <h1>The artist's popularity!<div id = "popularity"></div></h1>
 	  <h1>How many followers the artist has! <div id = "followers"></div></h1>
     <div id="results" >
@@ -60,14 +60,16 @@
 	  <div id = "cover_one" ></div>
 
     <script>
-$.getJSON("https://api.spotify.com/v1/search?q=michael+jackson&type=artist", function(data){
+		function run_button(){
+		var user_query = document.getElementById("user_in").value;
+$.getJSON('https://api.spotify.com/v1/search?q="'+ user_query +'"&type=artist', function(data){
   var artist_url = $('#results').text(data.artists.items[0].id);
 $.getJSON("https://api.spotify.com/v1/artists/"+artist_url.text(),function(sed){
      var pic_url = $('#art_name').text(sed.images[0].url);
 	document.getElementById("cover_one").innerHTML = '<img src = "' + pic_url.text()+'">';
 	$('#popularity').text(sed.popularity);
 	$('#followers').text(sed.followers.total);
-          })});
+          })})};
     </script>
   </body>
 </html>
