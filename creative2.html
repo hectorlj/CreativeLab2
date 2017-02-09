@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Creative Lab #2</title>
+        <script type = "text/javascript" src= "http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <meta charset="UTF=8">
+   <style>
+    body {
+    padding: 20px;
+      background-image:url();
+}
+
+#search-form, .form-control {
+    margin-bottom: 20px;
+}
+
+.cover {
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.cover:hover {
+    cursor: pointer;
+}
+
+.cover.playing {
+    border: 5px solid #e45343;
+}
+      div#results{
+	   		display: none;
+	   }
+	   
+	   div#art_name{
+	   		display: none;
+	   }
+	   div#cover_one{
+			width: 30%;   
+	   }
+	   
+	   h1{
+		   font-size: 25px;
+	   }
+	   
+    </style>
+  </head>
+  <body>
+    <h2>Search for an Artist</h2>
+    <form>
+    Name:<br>
+    <input  type= "text" id = "user_in" name = "firstname" value = "">
+    </form>
+      <button type = "submit" ng-click = "run_button">Submit</button>
+	  <h1>The artist's popularity!<div id = "popularity"></div></h1>
+	  <h1>How many followers the artist has! <div id = "followers"></div></h1>
+    <div id="results" >
+    </div>
+    <div id = "art_name" ></div>
+	  <div id = "cover_one" ></div>
+
+    <script>
+$.getJSON("https://api.spotify.com/v1/search?q=michael+jackson&type=artist", function(data){
+  var artist_url = $('#results').text(data.artists.items[0].id);
+$.getJSON("https://api.spotify.com/v1/artists/"+artist_url.text(),function(sed){
+     var pic_url = $('#art_name').text(sed.images[0].url);
+	document.getElementById("cover_one").innerHTML = '<img src = "' + pic_url.text()+'">';
+	$('#popularity').text(sed.popularity);
+	$('#followers').text(sed.followers.total);
+          })});
+    </script>
+  </body>
+</html>
+
+
